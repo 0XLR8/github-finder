@@ -1,13 +1,172 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+*{
+  font-family: 'Poppins', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+    background-color: #383B48;
+}
+
+h1, h2, h3, p{
+    margin: 0px;
+}
+
+input, button{
+    border: none;
+}
+
+input:focus{
+    outline: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    color: initial;
+}
+
+.app{
+    min-height: 100vh;
+}
+
+/* NAVBAR */
+.nav-bar{
+    background-color: #252931;
+    padding: 16px 0px 20px;
+    box-shadow: 0px -1px 15px #1f1f1fab;
+}
+.nav-bar h1{
+    font-size: 22px;
+    color: white;
+    font-weight: 600;
+}
+.nav-bar .icon{
+    position: relative;
+    bottom: 2px;
+    margin-right: 5px;
+}
+.nav-bar a{
+    color: white;
+    font-weight: 600;
+    margin-left: 20px;
+}
+
+/* FOOTER */
+.footer{
+    background-color: #313947;
+    box-shadow: 0px 1px 15px #1f1f1fa8;
+}
+.footer .icon{
+    font-size: 35px;
+    color: white;
+}
+.footer p{
+    color: white;
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+/* HOME */
+.home input{
+    border-radius: 10px 0px 0px 10px;
+    padding: 10px 15px;
+    margin-right: 5px;
+}
+.home .search-btn{
+    background-color: #252931;
+    color: white;
+    font-weight: 500;
+    border-radius: 0px 10px 10px 0px;
+}
+.home .clear-btn{
+    background-color: transparent;
+    font-weight: 500;
+    color: white;
+}
+.home form{
+    width: 100%;
+    max-width: 500px;
+}
+
+/* USERS */
+.user{
+    width: 110px;
+    margin: 0px 20px 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #252931;
+}
+.user-name{
+    font-weight: 500;
+    color: white;
+    margin: 7px auto 2px;
+}
+.user a{
+    color: white;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: 0.1s ease-in-out;
+}
+.user img{
+    width: 80px;
+    border-radius: 50%;
+}
+.user a:hover{
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* LOADER */
+.load-handler{
+    flex-grow: 1;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.message{
+    color: white; 
+    font-size: 25px;
+    text-align: center;
+}
+
+/* ABOUT */
+.about{
+    color: white;
+}
+.about h2{
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+.about p{
+    font-weight: 400;
+    margin-bottom: 2px;
+}
+
+/* NOTFOUND */
+.notfound{
+    text-align: center;
+    color: white;
+}
+.notfound h1{
+    font-size: 45px;
+    font-weight: 700;
+}
+.notfound h2{
+    font-weight: 400;
+    font-size: 28px;
+    opacity: 0.8;
+    margin: 15px auto 20px;
+}
+.notfound a{
+    display: inline-block;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 10px 20px;
+    background-color: rgb(94, 39, 182);
 }
