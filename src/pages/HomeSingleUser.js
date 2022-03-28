@@ -12,14 +12,13 @@ const HomeSingleUser = () => {
 
     useEffect(() => {
         fetchSingleUser(login)
-    },[])
+    }, [fetchSingleUser, login])
 
     return(
         <div className="flex-grow-1 d-flex flex-column justify-content-center">
             { pending && <div className="load-handler"><TailSpin color="#FFF" height={50} width={50} /></div> }
             { error && <div className="load-handler"><h2 className="message">There was an error.<br/>Try again later.</h2></div> }
-            { user && !error && !pending && <SingleUser user={user}/>
-            }
+            { user && !error && !pending && <SingleUser user={user}/> }
         </div>
     )
 }

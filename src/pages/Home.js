@@ -1,6 +1,6 @@
 import SearchBar from "../components/SearchBar";
 import UserList from "../components/UserList";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import UserContext from "../context/user/UserContext";
 import { TailSpin } from "react-loader-spinner";
 

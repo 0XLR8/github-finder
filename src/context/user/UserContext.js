@@ -1,5 +1,4 @@
-import { createContext, useReducer } from "react";
-import UserReducer from "./UserReducer";
+import { createContext, useCallback, useState } from "react";
 
 const UserContext = createContext();
 
@@ -9,14 +8,10 @@ const gitTOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
 export const UserProvider = ({children}) => {
 
-    const initialState = {
-        users: null,
-        user: null,
-        pending: false,
-        error: false
-    }
-
-    const [state, dispatch] = useReducer(UserReducer, initialState);
+    const [users, setUsers] = useState(null);
+    const [user, setUser] = useState(null);
+    const [pending, setPending] = useState(false);
+    const [error, setError] = useState(false);
 
     const fetchUsers = (user) => {
         setLoading();
@@ -30,19 +25,16 @@ export const UserProvider = ({children}) => {
                 if(res.ok){
                     const data = await res.json();
                     console.log(data.items);
-                    dispatch({
-                        type: "GET_USERS",
-                        payload: data.items
-                    })
+                    setPending(false);
+                    setUsers(data.items);
                 }else{
                     throw new Error();
                 }
             }
             catch(er){
                 console.log(er);
-                dispatch({
-                    type: "FAIL_USERS"
-                })
+                setPending(false);
+                setError(true);
             }
         }
         setTimeout(() => {
@@ -50,7 +42,7 @@ export const UserProvider = ({children}) => {
         }, 1000)
     }
 
-    const fetchSingleUser = (user) => {
+    const fetchSingleUser = useCallback((user) => {
         setLoading();
         const timeout = async () => {
             try{
@@ -62,30 +54,25 @@ export const UserProvider = ({children}) => {
                 if(res.ok){
                     const data = await res.json();
                     console.log(data);
-                    dispatch({
-                        type: "GET_USER",
-                        payload: data
-                    })
+                    setUser(data);
+                    setPending(false);
                 }else{
                     throw new Error();
                 }
             }
             catch(er){
                 console.log(er);
-                dispatch({
-                    type: "FAIL_USERS"
-                })
+                setPending(false);
+                setError(true);
             }
         }
         setTimeout(() => {
             timeout()
         }, 1000)
-    }
+    }, [])
 
     const setLoading = () => {
-        dispatch({
-            type: "SET_LOADING"
-        })
+        setPending(true);
     }
 
     const handleSearchUser = (text) => {
@@ -93,18 +80,15 @@ export const UserProvider = ({children}) => {
     }
 
     const handleClear = () => {
-        dispatch({
-            type: "CLEAR_USERS"
-        })
-        console.log(state.users);
+        setUsers(null)
     }
 
     return(
         <UserContext.Provider value={{
-            user: state.user,
-            users: state.users,
-            pending: state.pending,
-            error: state.error,
+            user: user,
+            users: users,
+            pending: pending,
+            error: error,
             fetchUsers,
             fetchSingleUser,
             handleSearchUser,
